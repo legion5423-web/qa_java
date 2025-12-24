@@ -14,12 +14,11 @@ class FelineTest {
     }
 
     @Test
-    void eatMeatReturnsCorrectFood() throws Exception {
-        List<String> food = feline.eatMeat();
-        assertEquals(3, food.size());
-        assertTrue(food.contains("Животные"));
-        assertTrue(food.contains("Птицы"));
-        assertTrue(food.contains("Рыба"));
+    void eatMeatReturnsExpectedFoodList() throws Exception {
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        List<String> actualFood = feline.eatMeat();
+
+        assertEquals(expectedFood, actualFood);
     }
 
     @Test
@@ -29,6 +28,9 @@ class FelineTest {
 
     @Test
     void getKittensWithParameterReturnsCorrectCount() {
-        assertEquals(5, feline.getKittens(5));
+        int expectedCount = 5;
+        int actualCount = feline.getKittens(expectedCount);
+
+        assertEquals(expectedCount, actualCount);
     }
 }

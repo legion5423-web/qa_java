@@ -25,9 +25,9 @@ class LionTest {
 
     @Test
     void constructorWithInvalidSexThrowsException() {
-        Exception exception = assertThrows(Exception.class, () -> {
-            new Lion("Неверный", felineMock);
-        });
+        Exception exception = assertThrows(Exception.class, () ->
+                new Lion("Неверный", felineMock)
+        );
         assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
 
@@ -35,15 +35,19 @@ class LionTest {
     void getKittensDelegatesToFeline() throws Exception {
         when(felineMock.getKittens()).thenReturn(3);
         Lion lion = new Lion(validMale, felineMock);
-        assertEquals(3, lion.getKittens());
+        int actualKittens = lion.getKittens();
+        assertEquals(3, actualKittens);
     }
 
     @Test
     void getFoodDelegatesToFeline() throws Exception {
-        when(felineMock.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        when(felineMock.getFood("Хищник")).thenReturn(expectedFood);
+
         Lion lion = new Lion(validMale, felineMock);
-        List<String> food = lion.getFood();
-        assertEquals(3, food.size());
-        assertTrue(food.contains("Рыба"));
+        List<String> actualFood = lion.getFood();
+
+
+        assertEquals(expectedFood, actualFood);
     }
 }

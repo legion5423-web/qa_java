@@ -11,15 +11,18 @@ class CatTest {
     private final Cat cat = new Cat(predatorMock);
 
     @Test
-    void getSoundReturnsMeow() throws Exception {
+    void getSoundReturnsMeow() {
         assertEquals("Мяу", cat.getSound());
     }
 
     @Test
-    void getFoodDelegatesToPredator() throws Exception {
+    void getFoodReturnsExpectedList() throws Exception {
         when(predatorMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+
+
         List<String> food = cat.getFood();
-        assertEquals(3, food.size());
-        assertTrue(food.contains("Рыба"));
+
+
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
     }
 }

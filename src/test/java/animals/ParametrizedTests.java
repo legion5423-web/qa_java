@@ -18,6 +18,7 @@ class ParametrizedTests {
     })
     void getKittensReturnsCorrectCount(int input, int expected) {
         when(felineMock.getKittens(input)).thenReturn(expected);
-        assertEquals(expected, felineMock.getKittens(input));
+        int result = felineMock.getKittens(input);
+        assertEquals(expected, result);
     }
 }
